@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "ng": "ng build --prod --aot",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
