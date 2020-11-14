@@ -1,0 +1,17 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div *ngIf="isLoginFailed" class="mb-3 p-2 border justify-content-center border-danger text-white">
+    Неверный логин или пароль. Попробуйте снова.
+  </div>
+  <div class="form-group">
+    <label for="username">Имя</label>
+    <input type="text" name="username" class="form-control" formControlName="username" id="username"
+           placeholder='Имя' required>
+  </div>
+  <div class="form-group">
+    <label for="password">Пароль</label>
+    <input type="password" name="password" class="form-control" formControlName="password" id="password"
+           placeholder='Пароль' required>
+  </div>
+  <button type="submit" class="btn btn-warning mb-1" [disabled]="!loginForm.valid">Подтвердить</button>
+  <p style="color: white;">Войти <a routerLinkActive="active" routerLink="/registration">Регистрация</a></p>
+</form>

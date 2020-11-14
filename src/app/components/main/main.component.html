@@ -1,0 +1,17 @@
+<div class="card-columns" *ngIf="filmService.films.length; else empty">
+  <div *ngFor="let film of filmService.films" class="card text-white bg-dark m-1 mb-3" style="width: 18rem;">
+    <img class="card-img-top" src="{{film.preview}}" alt="Film preview">
+    <div class="card-body">
+      <h5 class="card-title">{{film.name}} </h5>
+      <br/>
+      <a>Длительность: {{film.length}} мин.</a> <br/>
+      <h3>Бюджет: {{film.budget}} ₽</h3>
+    </div>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div>
+    <h3>Фильмы отсутствуют!</h3>
+  </div>
+</ng-template>
