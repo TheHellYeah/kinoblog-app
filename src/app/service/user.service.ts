@@ -12,6 +12,6 @@ export class UserService {
   }
 
   userPage(id: string): Observable<any> {
-    return this.http.get(API_URL + '/user' + '/' + id);
+    return this.http.get(API_URL + '/user/' + id);
   }
 }

@@ -9,12 +9,11 @@ const API_URL = environment.api_url;
 
 @Injectable({providedIn: 'root'})
 export class FilmsService {
-  public films: Film[] = [];
 
   constructor(private http: HttpClient) {}
 
-  load(): void {
-    this.http.get<Film[]>(API_URL).subscribe(films => this.films = films);
+  getMainPage(): Observable<any> {
+    return this.http.get(API_URL);
   }
 
   add(form: FormGroup): Observable<any> {
@@ -23,5 +22,13 @@ export class FilmsService {
 
   getAddPage(): Observable<any> {
     return this.http.get(API_URL + '/film/add');
+  }
+
+  getFilm(id: string): Observable<Film> {
+    return this.http.get<Film>(API_URL + '/film/' + id);
+  }
+
+  addReview(form: FormGroup, filmId: bigint): Observable<any> {
+    return this.http.post<any>(API_URL + '/film/' + filmId + '/review', form.value);
   }
 }

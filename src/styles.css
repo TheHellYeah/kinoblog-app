@@ -8,4 +8,21 @@ body {
   font-size: 22px;
 }
 
+.container {
+  padding: 5px;
+  border-radius: 20px;
+  background-color: #343a40;
+  margin-bottom: 20px;
+}
 
+.img-thumbnail {
+  background-color: #007bff;
+  border: none;
+}
+
+.form-group {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  align-content: center;
+}

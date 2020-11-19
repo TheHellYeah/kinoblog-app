@@ -1,4 +1,5 @@
 import {Role} from './role';
+import {Review} from './review';
 
 export class User {
   id: bigint;
@@ -7,6 +8,7 @@ export class User {
   registration: Date;
   avatar: string;
   roles: Role[];
+  reviews: Review[];
 
   constructor(data: any) {
     this.username = data.username;
@@ -16,3 +18,4 @@ export class User {
     this.roles = data.roles;
   }
 }
+

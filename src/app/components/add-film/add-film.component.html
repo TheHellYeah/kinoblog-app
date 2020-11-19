@@ -1,17 +1,21 @@
 <form *ngIf="isAvailable; else unavailable" class="mt-3 mb-5" [formGroup]="addFilmForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="name">Название фильма</label>
+    <label for="name">Название</label>
     <input type="text" id="name" class="form-control" placeholder="Введите название фильма" formControlName="name">
   </div>
-<!--  <div class="form-group">-->
-<!--    <label for="preview">Ссылка на изображение</label>-->
-<!--    <input type="text" id="preview" class="form-control" formControlName="preview">-->
-<!--  </div>-->
-<!--  <div class="form-group">-->
-<!--    <label for="trailer">Ссылка на трейлер</label>-->
-<!--    <input type="text" id="trailer" class="form-control" formControlName="trailer">-->
-<!--  </div>-->
-  <button type="submit" class="btn btn-warning mb-1" [disabled]="!addFilmForm.valid">Добавить</button>
+  <div class="form-group">
+    <label for="description">Описание</label>
+    <textarea type="text" id="description" class="form-control" formControlName="description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="preview">Превью</label>
+    <input type="text" id="preview" class="form-control" placeholder="Ссылка на превью к фильму" formControlName="preview">
+  </div>
+  <div class="form-group">
+    <label for="trailer">Трейлер</label>
+    <input type="text" id="trailer" class="form-control" placeholder="Ссылка на трейлер к фильму" formControlName="trailer">
+  </div>
+  <button type="submit" class="btn btn-primary mb-1 mt-3" [disabled]="!addFilmForm.valid">Добавить</button>
 </form>
 <ng-template #unavailable>
   <div>

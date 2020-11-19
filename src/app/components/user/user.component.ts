@@ -10,14 +10,12 @@ import {User} from '../../model/user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: User;
+  user: User = {} as User;
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.userService.userPage(id).subscribe(data => {
-
-    });
+    this.userService.userPage(id).subscribe(response => this.user = response);
   }
 }

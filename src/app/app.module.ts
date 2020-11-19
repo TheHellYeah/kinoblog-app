@@ -12,17 +12,19 @@ import { BackupComponent } from './components/backup/backup.component';
 import { UserComponent } from './components/user/user.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './security/auth.interceptor';
-import {AuthGuard} from './security/auth.guard';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ErrorHandlerService} from './service/error-handler.service';
+import { ErrorComponent } from './components/error/error.component';
 
 const appRoutes: Routes = [
   {path: '', component: MainComponent},
-  {path: 'add', component: AddFilmComponent, canActivate: [AuthGuard]},
+  {path: 'add', component: AddFilmComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'restore', component: BackupComponent, canActivate: [AuthGuard]},
+  {path: 'restore', component: BackupComponent},
   {path: 'user/:id', component: UserComponent},
-  {path: '**', redirectTo: ''}
+  {path: 'film/:id', component: FilmComponent},
+  {path: 'error', component: ErrorComponent}
 ];
 
 @NgModule({
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     FilmComponent,
     AddFilmComponent,
     BackupComponent,
-    UserComponent
+    UserComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+ //   {provide: ErrorHandler, useClass: ErrorHandlerService}
   ],
   bootstrap: [AppComponent]
 })

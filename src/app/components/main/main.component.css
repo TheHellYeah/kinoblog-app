@@ -1,0 +1,9 @@
+
+.card-columns .card {
+  border-color: #007bff;
+}
+
+.card-columns .card:hover {
+  border-color: #ffc107;
+  cursor: pointer;
+}
