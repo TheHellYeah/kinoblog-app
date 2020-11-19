@@ -1,0 +1,91 @@
+<div class="mt-4 mb-4">
+  <div class="row mb-5 w-100">
+    <div class="col-1"></div>
+    <div class="col-4">
+      <img [src]="film.preview" class="img-thumbnail" alt="">
+    </div>
+    <div class="col-7">
+      <div>
+        <h1 class="item-name text-primary ">{{film.name}}</h1>
+        <p>Дата выхода: {{film.release}} год</p>
+        <p>Длительность: {{film.length}}</p>
+        <p>Бюджет: {{film.budget}} ₽</p>
+      </div>
+    </div>
+  </div>
+  <div class="row w-100 mb-4">
+    <div class="col-1"></div>
+    <div class="col-11">
+      <ul class="nav nav-tabs">
+        <li class="active mr-4 p-1"><a class="text-white active film-nav" data-toggle="tab"
+                                       href="#desc">Обзор</a></li>
+        <li class="p-1 mr-4"><a class="text-white film-nav" data-toggle="tab"
+                           href="#trailer">Трейлер</a></li>
+        <li *ngIf="!noReviews" class="p-1"><a class="text-white film-nav" data-toggle="tab"
+                           href="#chart">Статистика рейтинга</a></li>
+      </ul>
+      <div class="tab-content mt-3">
+        <div id="desc" class="tab-pane fade in active show">
+          <div class="info mt-2">
+            {{film.description}}
+          </div>
+        </div>
+        <div id="trailer" class="tab-pane fade">
+          <iframe width="560" height="315" [src]="getVideoUrl()" allowfullscreen></iframe>
+        </div>
+        <div id="chart" class="tab-pane fade">
+          <canvas id="my-chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row w-100">
+    <div class="col-1"></div>
+    <div class="col-11">
+      <h2>Отзывы зрителей</h2>
+      <a class="button" href="/film/{{film.id}}#add">Добавить отзыв</a>
+      <hr/>
+      <div *ngFor="let review of film.reviews">
+        <div class="review">
+          <div>{{review.date}}</div>
+          <div>{{review.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row w-100">
+    <div class="col-1"></div>
+    <div class="col-11">
+      <h2>Оставьте свой отзыв</h2>
+      <form id="add" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div class="form-group rating-area">
+          <input type="radio" id="star-10" name="mark" value="10" formControlName="mark">
+          <label for="star-10"></label>
+          <input type="radio" id="star-9" name="mark" value="9" formControlName="mark">
+          <label for="star-9"></label>
+          <input type="radio" id="star-8" name="mark" value="8" formControlName="mark">
+          <label for="star-8"></label>
+          <input type="radio" id="star-7" name="mark" value="7" formControlName="mark">
+          <label for="star-7"></label>
+          <input type="radio" id="star-6" name="mark" value="6" formControlName="mark">
+          <label for="star-6"></label>
+          <input type="radio" id="star-5" name="mark" value="5" formControlName="mark">
+          <label for="star-5"></label>
+          <input type="radio" id="star-4" name="mark" value="4" formControlName="mark">
+          <label for="star-4"></label>
+          <input type="radio" id="star-3" name="mark" value="3" formControlName="mark">
+          <label for="star-3"></label>
+          <input type="radio" id="star-2" name="mark" value="2" formControlName="mark">
+          <label for="star-2"></label>
+          <input type="radio" id="star-1" name="mark" value="1" formControlName="mark">
+          <label for="star-1"></label>
+        </div>
+        <div class="form-group">
+          <textarea type="text" class="form-control" formControlName="description" id="description" placeholder="Текст"
+                    required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mb-1" [disabled]="!reviewForm.valid">Отправить</button>
+      </form>
+    </div>
+  </div>
+</div>

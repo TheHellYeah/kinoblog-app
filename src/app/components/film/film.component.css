@@ -1,0 +1,58 @@
+
+.film-nav {
+  font-size: 24px;
+}
+
+.film-nav:hover {
+  color: #007bff !important;
+}
+
+hr {
+  background-color: white;
+}
+
+.rating-area:not(:checked) > input {
+  display: none;
+}
+.rating-area:not(:checked) > label {
+  float: right;
+  width: 42px;
+  padding: 0;
+  cursor: pointer;
+  font-size: 32px;
+  line-height: 32px;
+  color: lightgrey;
+}
+.rating-area:not(:checked) > label:before {
+  content: '★';
+}
+.rating-area > input:checked ~ label,
+.rating-area label:hover {
+  color: gold;
+}
+
+.rating-area:not(:checked) > label:hover,
+.rating-area:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+.rating-area > input:checked + label:hover ~ label,
+.rating-area > input:checked ~ label:hover ~ label,
+.rating-area > label:hover ~ input:checked ~ label {
+  color: gold;
+}
+
+button {
+  margin-left: 10%;
+}
+
+#my-chart {
+  width: 400px;
+  height: 400px;
+}
+
+.review {
+  background-color: #3f454a;
+  border-radius: 20px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
