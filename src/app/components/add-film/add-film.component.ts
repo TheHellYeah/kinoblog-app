@@ -18,8 +18,9 @@ export class AddFilmComponent implements OnInit {
   constructor(private builder: FormBuilder, private filmService: FilmsService, private authService: AuthService, private router: Router) {
     this.addFilmForm = builder.group({
       name: '',
-
       description: '',
+      length: '',
+      releaseYear: '',
       preview: '',
       trailer: ''
     });

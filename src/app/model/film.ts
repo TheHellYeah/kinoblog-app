@@ -3,7 +3,7 @@ import {Review} from './review';
 export class Film {
   id: bigint;
   name: string;
-  release: Date;
+  releaseYear: number;
   description: string;
   preview: string;
   trailer: string;
