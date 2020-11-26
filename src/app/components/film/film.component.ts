@@ -6,6 +6,7 @@ import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Chart} from 'node_modules/chart.js';
 import {Review} from '../../model/review';
+import {EnumUtils} from '../../service/enum-utils';
 
 @Component({
   selector: 'app-film',
@@ -21,7 +22,8 @@ export class FilmComponent implements OnInit {
     mark: new FormControl()
   });
 
-  constructor(private filmService: FilmsService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private filmService: FilmsService, private route: ActivatedRoute, private sanitizer: DomSanitizer, public enumUtils: EnumUtils) {
   }
 
   ngOnInit(): void {
@@ -40,7 +42,8 @@ export class FilmComponent implements OnInit {
 
   onSubmit(): void {
     if (this.reviewForm.value.mark != null) {
-      this.filmService.addReview(this.reviewForm, this.film.id).subscribe(() => { // TODO
+      this.filmService.addReview(this.reviewForm, this.film.id).subscribe(review => {
+        this.film.reviews.push(review);
       });
     }
   }

@@ -8,8 +8,9 @@
       <div>
         <h1 class="item-name text-primary ">{{film.name}}</h1>
         <p>Дата выхода: {{film.releaseYear}} год</p>
-        <p>Длительность: {{film.length}}</p>
-        <p>Бюджет: {{film.budget}} ₽</p>
+        <p>Длительность: {{film.length}} мин.</p>
+        <p>Жанр: {{enumUtils.transformGenreToString(film.genre)}}</p>
+        <p>Страна: {{enumUtils.transformCountryToString(film.country)}}</p>
       </div>
     </div>
   </div>
@@ -46,9 +47,19 @@
       <a class="button" href="/film/{{film.id}}#add">Добавить отзыв</a>
       <hr/>
       <div *ngFor="let review of film.reviews">
-        <div class="review">
-          <div>{{review.date}}</div>
-          <div>{{review.description}}</div>
+        <div class="border border-primary rounded container m-1" style="font-size: 20px;">
+          <div class="row">
+            <div class="col-1">
+              <img class="img-thumbnail" src="{{review.reviewer.avatar}}" alt="Аватар пользователя">
+            </div>
+            <div class="col-10">
+              <h2><a href="/user/{{review.reviewer.id}}">{{review.reviewer.username}}</a></h2>
+              <p class="text" style="font-style: italic">{{review.description}}</p>
+            </div>
+            <div class="col-1">
+              <div class="mark">{{review.mark}}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

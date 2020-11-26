@@ -1,0 +1,12 @@
+
+export enum Genre {
+  DRAMA ,
+  HORROR ,
+  COMEDY ,
+  THRILLER ,
+  FANTASTIC ,
+  DETECTIVE,
+  WAR ,
+  HISTORICAL,
+  CARTOON
+}

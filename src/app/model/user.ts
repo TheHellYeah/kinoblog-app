@@ -11,6 +11,7 @@ export class User {
   reviews: Review[];
 
   constructor(data: any) {
+    this.id = data.id;
     this.username = data.username;
     this.email = data.email;
     this.registration = data.registration;

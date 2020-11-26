@@ -50,9 +50,10 @@ button {
   height: 400px;
 }
 
-.review {
-  background-color: #3f454a;
-  border-radius: 20px;
-  padding: 5px;
-  margin-bottom: 5px;
+.mark {
+  background-color: #007bff;
+  border-radius: 5px;
+  text-align: center;
+  height: 54px;
+  font-size: 25px;
 }

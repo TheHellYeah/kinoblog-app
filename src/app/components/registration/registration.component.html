@@ -1,5 +1,5 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <div *ngIf="isRegistrationFailed" class="mb-3 p-2 border justify-content-center border-danger text-white">
+  <div *ngIf="isRegistrationFailed" id="failed-registration" class="mt-3 mb-3 p-2 border justify-content-center border-danger text-white">
     Пользователь с данным именем или email уже зарегестрирован.
   </div>
   <div class="form-group">
@@ -17,6 +17,6 @@
     <input type="email" name="email" class="form-control" formControlName="email" id="email"
            placeholder='Введите email' required>
   </div>
-  <button type="submit" class="btn btn-warning mb-1" [disabled]="!registrationForm.valid">Регистрация</button>
+  <button type="submit" class="btn btn-primary mb-1" [disabled]="!registrationForm.valid">Регистрация</button>
   <p style="color: white;"><a routerLinkActive="active" routerLink="/login">Назад</a></p>
 </form>

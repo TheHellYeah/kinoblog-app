@@ -1,1 +1,34 @@
-<p>user works!</p>
+<div class="row">
+  <div class="col-2">
+    <img src="{{user.avatar}}" class="img-thumbnail" alt="Изображение профиля">
+  </div>
+  <div class="col-10 ">
+    <h3>Имя пользователя:
+      <span class="text-primary">{{user.username}}</span>
+    </h3>
+    <h4>Зарегистрирован: {{user.registration}}</h4>
+  </div>
+</div>
+<div class="row ml-4 mt-3">
+  <div class="col-11">
+    <div *ngIf="user.reviews.length > 0">
+      <h3>Отзывы пользователя:</h3>
+      <div *ngFor="let review of user.reviews" class="mb-3">
+        <div class="border border-primary rounded container m-1" style="font-size: 20px;">
+          <div class="row">
+            <div class="col-3">
+              <img class="img-thumbnail" src="{{review.film.preview}}">
+            </div>
+            <div class="col-8">
+              <h2><a href="/film/{{review.film.id}}">{{review.film.name}}</a> <span class="ml-5">{{review.date}}</span></h2>
+              <p class="text" style="font-style: italic">{{review.description}}</p>
+            </div>
+            <div class="col-1">
+              <div class="mark">{{review.mark}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

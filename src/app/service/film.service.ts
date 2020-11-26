@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Film} from '../model/film';
 import {FormGroup} from '@angular/forms';
 import {environment} from '../../environments/environment';
@@ -30,5 +30,14 @@ export class FilmsService {
 
   addReview(form: FormGroup, filmId: bigint): Observable<any> {
     return this.http.post<any>(API_URL + '/film/' + filmId + '/review', form.value);
+  }
+
+  filter(filterForm: FormGroup): Observable<any> {
+    Object.keys(filterForm.value).forEach((key) => {
+      if (filterForm.value[key] == null) {
+        delete filterForm.value[key];
+      }
+    });
+    return this.http.get(API_URL, {params: filterForm.value});
   }
 }

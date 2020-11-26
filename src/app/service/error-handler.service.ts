@@ -11,7 +11,6 @@ export class ErrorHandlerService implements ErrorHandler {
   }
 
   handleError(error: HttpErrorResponse): void {
-    console.log(error.message);
-    this.router.navigate(['/error'], {queryParams: {code: error.status}});
+      this.router.navigate(['/error'], {queryParams: {code: error.status}});
   }
 }

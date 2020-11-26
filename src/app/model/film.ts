@@ -1,4 +1,6 @@
 import {Review} from './review';
+import {Genre} from './genre';
+import {Country} from './country';
 
 export class Film {
   id: bigint;
@@ -8,7 +10,8 @@ export class Film {
   preview: string;
   trailer: string;
   length: number;
-  budget: bigint;
   rating: number;
   reviews: Review[];
+  genre: Genre;
+  country: Country;
 }

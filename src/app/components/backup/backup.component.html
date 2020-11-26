@@ -1,10 +1,12 @@
-<div class="form-group" *ngIf="isAvailable; else unavailable">
-  <label for="backup">Выберите необходимый бэкап</label>
-  <select class="form-control" name="backup" id="backup" >
-    <option *ngFor="let backup of backups" ngValue="{{backup}}" >{{backup}}</option>
-  </select>
-  <button type="submit" class="btn btn-warning mb-1 mt-3" (submit)="onSubmit()">Подтвердить</button>
-</div>
+<form *ngIf="isAvailable; else unavailable" [formGroup]="backupForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="backup">Выберите необходимый бэкап</label>
+    <select class="form-control" name="backup" id="backup" formControlName="backup" required="required">
+      <option *ngFor="let backup of backups" value="{{backup}}">{{backup}}</option>
+    </select>
+    <button [disabled]="!backupForm.valid" type="submit" class="btn btn-primary mb-1 mt-3" (submit)="onSubmit()" >Подтвердить</button>
+  </div>
+</form>
 <ng-template #unavailable>
   <div>
     У вас недостаточно прав для доступа к запрашиваемой странице.

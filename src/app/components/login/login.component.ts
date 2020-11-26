@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
           this.storageService.saveToken(response.token);
           this.storageService.saveUser(new User(response));
-          this.router.navigate([''], {skipLocationChange: false});
+          this.router.navigate(['']).then(() => location.reload());
         },
         error => {
           this.isLoginFailed = true;

@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FilmsService} from '../../service/film.service';
 import {AuthService} from '../../service/auth.service';
-import {response} from 'express';
 import {Router} from '@angular/router';
-
 
 @Component({
   selector: 'app-add-film',
@@ -22,17 +20,21 @@ export class AddFilmComponent implements OnInit {
       length: '',
       releaseYear: '',
       preview: '',
-      trailer: ''
+      trailer: '',
+      genre: '',
+      country: ''
     });
   }
 
   ngOnInit(): void {
-    this.filmService.getAddPage().subscribe();
+    this.filmService.getAddPage().subscribe(() => {}, () => {
+      this.isAvailable = false;
+    });
   }
 
 
   onSubmit(): void {
-    this.filmService.add(this.addFilmForm).subscribe(resp => {
+    this.filmService.add(this.addFilmForm).subscribe(() => {
       this.router.navigate(['/']);
     });
   }

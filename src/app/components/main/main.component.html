@@ -1,16 +1,58 @@
-<div class="card-columns" *ngIf="films.length; else empty">
-  <div *ngFor="let film of films" class="card text-white bg-dark m-1 mb-3" style="width: 18rem;"
-       (click)="router.navigate(['/film', film.id])">
-    <img class="card-img-top" src="{{film.preview}}" alt="Film preview">
-    <div class="card-body">
-      <h5 class="card-title">{{film.name}} </h5>
-      <br/>
-      <a>Длительность: {{film.length}} мин.</a> <br/>
-      <a>Дата выхода: {{film.releaseYear}} год</a> <br/>
+<div>
+  <div class="mb-2 mt-3">
+    <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#film-collapse"
+              aria-expanded="false" aria-controls="film-collapse">
+        Фильтр
+      </button>
+    </p>
+    <div class="collapse" id="film-collapse">
+      <div class="card card-body filter-body">
+       <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+         <div class="form-group">
+           <label for="genre">Жанр фильма</label>
+           <select class="form-control" id="genre" formControlName="genre">
+             <option disabled selected>Выберие жанр</option>
+             <option value="DRAMA">Драма</option>
+             <option value="HORROR">Ужасы</option>
+             <option value="COMEDY">Комедия</option>
+             <option value="THRILLER">Боевик</option>
+             <option value="FANTASTIC">Фантастика</option>
+             <option value="DETECTIVE">Детектив</option>
+             <option value="WAR">Военный</option>
+             <option value="HISTORICAL">Исторический</option>
+           </select>
+         </div>
+         <div class="form-group">
+           <label for="country">Страна</label>
+           <select class="form-control" id="country" formControlName="country">
+             <option disabled selected>Выберие страну</option>
+             <option value="USA">Сша</option>
+             <option value="RUSSIA">Россия</option>
+             <option value="CANADA">Канада</option>
+             <option value="FRANCE">Франция</option>
+             <option value="GERMANY">Германия</option>
+           </select>
+         </div>
+         <button type="submit" class="btn btn-primary mb-1" [disabled]="!filterForm.valid">Поиск</button>
+         <button type="submit" class="btn btn-primary mb-1 ml-2" (click)="clearFilter()">Очистить</button>
+       </form>
+      </div>
+    </div>
+  </div>
+  <div class="card-columns" *ngIf="films.length; else empty">
+    <div *ngFor="let film of films" class="card text-white bg-dark m-1 mb-3" style="width: 18rem;"
+         (click)="router.navigate(['/film', film.id])">
+      <img class="card-img-top" src="{{film.preview}}" alt="Film preview">
+      <div class="card-body">
+        <h5 class="card-title">{{film.name}} </h5> <br/>
+        <a>{{enumUtils.transformGenreToString(film.genre)}}</a><br/>
+        <a>Длительность: {{film.length}} мин.</a> <br/>
+        <a>Дата выхода: {{film.releaseYear}} год</a> <br/>
+      </div>
     </div>
   </div>
 </div>
-
 <ng-template #empty>
   <div>
     <h3>Фильмы отсутствуют!</h3>

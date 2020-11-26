@@ -8,14 +8,9 @@ import {ErrorHandlerService} from '../../service/error-handler.service';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
-  code: number;
 
   constructor(private route: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params =>  this.code = +params.code);
-    if ( this.code === 401) {
-      console.log('401aa');
-    }
   }
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../service/admin.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-backup',
@@ -9,6 +10,9 @@ import {AdminService} from '../../service/admin.service';
 export class BackupComponent implements OnInit {
   backups: string[];
   isAvailable = true;
+  backupForm = new FormGroup({
+    backup: new FormControl()
+  });
 
   constructor(private adminService: AdminService) {
   }
@@ -22,6 +26,7 @@ export class BackupComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.adminService.restore(this.backups[0]); // TODO
+    console.log(this.backupForm.value);
+    this.adminService.restore(this.backupForm).subscribe();
   }
 }

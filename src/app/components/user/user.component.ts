@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../service/auth.service';
 import {UserService} from '../../service/user.service';
@@ -12,10 +12,13 @@ import {User} from '../../model/user';
 export class UserComponent implements OnInit {
   user: User = {} as User;
 
-  constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService) {
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.userService.userPage(id).subscribe(response => this.user = response);
+    this.userService.userPage(id).subscribe(response => {
+      this.user = response;
+    });
   }
 }

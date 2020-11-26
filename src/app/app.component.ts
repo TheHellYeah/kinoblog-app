@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './service/auth.service';
+import {User} from './model/user';
+import {Role} from './model/role';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +9,23 @@ import {AuthService} from './service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  isAuthenticated = true;
+  isAuthenticated = false;
+  isModerator = false;
+  isAdmin = false;
+  user = {} as User;
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.user = this.authService.user;
+    if (this.user != null) {
+      this.isAuthenticated = true;
+      // @ts-ignore
+      this.isModerator = this.user.roles.includes('MODERATOR');
+      // @ts-ignore
+      this.isAdmin = this.user.roles.includes('ADMIN');
+    }
   }
 
   logout(): void {
