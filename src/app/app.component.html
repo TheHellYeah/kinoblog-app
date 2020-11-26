@@ -11,7 +11,7 @@
     <a class="nav-link" routerLinkActive="active" routerLink='/user/{{user.id}}'>Профиль<span
       class="sr-only">(current)</span></a>
     <a *ngIf="isModerator || isAdmin" class="nav-link" routerLinkActive="active" routerLink="/add">Добавить<span class="sr-only">(current)</span></a>
-    <a class="nav-link" routerLinkActive="active" routerLink='/admin'>Панель администратора<span class="sr-only">(current)</span></a>
+    <a *ngIf="isAdmin" class="nav-link" routerLinkActive="active" routerLink='/admin'>Панель администратора<span class="sr-only">(current)</span></a>
     <a *ngIf="isAdmin" class="nav-link" routerLinkActive="active" routerLink="/admin/restore">Резервное копирование<span class="sr-only">(current)</span></a>
     <a class="nav-link" routerLinkActive="active" routerLink="/" (click)="logout()">Выйти<span
       class="sr-only">(current)</span></a>
