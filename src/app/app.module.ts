@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
@@ -14,8 +14,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './security/auth.interceptor';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ErrorComponent} from './components/error/error.component';
-import { AdminComponent } from './components/admin/admin.component';
-import {ErrorHandlerService} from './service/error-handler.service';
+import {AdminComponent} from './components/admin/admin.component';
 
 const appRoutes: Routes = [
   {path: '', component: MainComponent},

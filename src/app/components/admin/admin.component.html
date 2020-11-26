@@ -1,0 +1,27 @@
+<h1>Список пользователей:</h1>
+<table id="users" class="table table-dark table-hover mt-3">
+  <thead>
+  <tr>
+    <th>Имя пользователя</th>
+    <th class="sorting_disabled">Email</th>
+    <th class="sorting_disabled">Дата регистрации</th>
+    <th class="sorting_disabled">Роли</th>
+    <th class="sorting_disabled"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr style="cursor: pointer;" *ngFor="let user of users">
+    <td><a href="/user/{{user.id}}">{{user.username}}</a></td>
+    <td>{{user.email}}</td>
+    <td>{{user.registration}}</td>
+    <td>
+      {{user.roles}}
+    </td>
+    <td>
+      <button class="btn btn-success" (click)="appointToMod(user.id)">Сделать модератором</button><br/>
+      <button class="btn btn-success mt-1" (click)="appointToAdmin(user.id)">Сделать администратором</button><br/>
+      <button class="btn btn-danger mt-1" (click)="dismiss(user.id)">Убрать роли</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
